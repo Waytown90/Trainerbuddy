@@ -1,0 +1,8 @@
+{
+  "name": "TrainerBuddy",
+  "description": "A premium sports & fitness trainer-matching platform that connects you with the perfect coach based on your sport, equipment, and budget.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
