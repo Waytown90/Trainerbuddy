@@ -21,7 +21,8 @@ export const EQUIPMENT_OPTIONS = [
   { label: 'Barbell', icon: '🏋️‍♂️' },
   { label: 'Yoga mat', icon: '🧘‍♀️' },
   { label: 'Treadmill', icon: '🏃‍♂️' },
-  { label: 'Kit / Racket', icon: '🎒' }
+  { label: 'Kit / Racket', icon: '🎒' },
+  { label: 'Others', icon: '➕' }
 ];
 
 export const TIME_SLOTS = [

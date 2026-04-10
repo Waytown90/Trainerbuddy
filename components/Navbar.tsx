@@ -1,77 +1,54 @@
 
 import React from 'react';
-import { View, User } from '../types';
+import { View } from '../types';
+import Logo from './Logo';
 
 interface NavbarProps {
-  user: User | null;
   currentView: View;
   onNavigate: (view: View) => void;
-  onLogout: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ user, currentView, onNavigate, onLogout }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
   return (
-    <nav className="sticky top-0 z-50 glass shadow-sm border-b border-gray-100">
+    <nav className="sticky top-0 z-50 glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16">
           <div 
-            className="flex items-center cursor-pointer group"
+            className="flex items-center gap-2 cursor-pointer group"
             onClick={() => onNavigate(View.HOME)}
           >
-            <span className="text-2xl font-bold font-poppins tracking-tight">
-              Trainer<span className="text-blue-600 group-hover:text-purple-600 transition-colors">Buddy</span>
+            <Logo className="w-8 h-8 text-blue-600" />
+            <span className="text-lg font-bold tracking-tight text-gray-900">
+              TrainerBuddy
             </span>
           </div>
 
-          <div className="flex items-center space-x-4 md:space-x-8">
-            <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSd_0NzwlT1jasTghpIaWGU01JniyB8hDNnacDCiXHixgnTUdQ/viewform?usp=sharing&ouid=100013622528179949486"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-bold text-blue-600 hover:text-purple-600 transition-colors hidden sm:block"
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => onNavigate(View.HOME)}
+              className={`text-sm font-medium transition-colors ${currentView === View.HOME ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}
             >
-              Want to be a trainer?
-            </a>
+              Home
+            </button>
+            <button
+              onClick={() => onNavigate(View.WIZARD)}
+              className={`text-sm font-medium transition-colors ${currentView === View.WIZARD ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}
+            >
+              Find a Coach
+            </button>
+            <button
+              onClick={() => onNavigate(View.PRICING)}
+              className={`text-sm font-medium transition-colors ${currentView === View.PRICING ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}
+            >
+              Pricing
+            </button>
             
-            {user?.isLoggedIn ? (
-              <>
-                {user.isAdmin && (
-                  <button
-                    onClick={() => onNavigate(View.ADMIN)}
-                    className={`text-sm font-bold uppercase tracking-wider transition-all px-4 py-2 rounded-xl ${
-                      currentView === View.ADMIN 
-                        ? 'bg-gray-900 text-white' 
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    Admin Panel
-                  </button>
-                )}
-                <div className="hidden md:flex flex-col items-end">
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1">
-                    Logged in as
-                  </span>
-                  <span className="text-sm font-semibold text-gray-800 leading-none">
-                    {user.email.split('@')[0]}
-                  </span>
-                </div>
-                <button
-                  onClick={onLogout}
-                  className="px-5 py-2 rounded-xl border-2 border-red-50 text-red-500 text-sm font-bold hover:bg-red-50 transition-all active:scale-95"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              currentView !== View.AUTH && (
-                <button
-                  onClick={() => onNavigate(View.AUTH)}
-                  className="px-8 py-3 rounded-2xl bg-gray-900 text-white font-bold shadow-lg shadow-gray-200 hover:bg-gray-800 transition-all active:scale-95"
-                >
-                  Sign In
-                </button>
-              )
-            )}
+            <button
+              onClick={() => onNavigate(View.WIZARD)}
+              className="px-5 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-all active:scale-95"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </div>

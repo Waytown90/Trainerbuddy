@@ -1,20 +1,7 @@
 
-export interface User {
-  email: string;
-  phone?: string;
-  dob?: string;
-  gender?: string;
-  password?: string; // Added to carry password to the form
-  isLoggedIn: boolean;
-  isAdmin: boolean;
-}
-
-export interface RegisteredUser {
-  email: string;
-  phone: string;
-  dob: string;
-  gender: string;
-  password: string;
+export interface ScheduleSlot {
+  day: string;
+  time: string;
 }
 
 export interface TrainingRequest {
@@ -22,21 +9,28 @@ export interface TrainingRequest {
   userEmail: string;
   userPhone?: string;
   userGender?: string;
-  userDob?: string;      // Added for full info reporting
-  userPassword?: string; // Added for full info reporting
-  trainerGenderPreference?: string; // New: preference for trainer
+  trainerGenderPreference?: string;
   sports: string[];
   equipment: string[];
-  timeSlots: string[];
-  days: string[];
-  budget: number;
+  schedule: ScheduleSlot[];
+  perSessionBudget: number;
+  sessionsPerMonth: number;
+  dateOfBirth?: string;
   submittedAt: string;
 }
 
 export enum View {
   HOME = 'home',
-  AUTH = 'auth',
-  FORM = 'form',
+  WIZARD = 'wizard',
   SUCCESS = 'success',
-  ADMIN = 'admin-secret-dashboard'
+  ADMIN = 'admin-secret-dashboard',
+  COACH_PROFILE = 'coach-profile',
+  MESSAGES = 'messages',
+  PRICING = 'pricing'
+}
+
+export enum WizardStep {
+  SPORT = 'sport',
+  TIMING_BUDGET = 'timing_budget',
+  PREVIEW = 'preview'
 }
